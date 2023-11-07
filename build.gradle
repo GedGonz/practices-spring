@@ -20,6 +20,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'org.postgresql:postgresql' 		//solo se requiere en tiempo de ejecucion y no cuando se escribe el código
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
