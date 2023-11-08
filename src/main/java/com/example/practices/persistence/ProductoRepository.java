@@ -1,12 +1,15 @@
 package com.example.practices.persistence;
 
+import com.example.practices.domain.repository.IProductRepository;
 import com.example.practices.persistence.crud.IProductoCrudRepository;
 import com.example.practices.persistence.entity.Producto;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ProductoRepository {
+@Repository
+public class ProductoRepository implements IProductRepository {
     private IProductoCrudRepository productoCrudRepository;
 
     public List<Producto> getAll(){
@@ -14,10 +17,21 @@ public class ProductoRepository {
     }
 
     public List<Producto> getByCategoria(int idCategoria){
-        return productoCrudRepository.findByIdCategoriaOrderyByNombreAsc(idCategoria);
+        return productoCrudRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
     }
     public Optional<List<Producto>> getEscasos(int cantidadStock){
-        return productoCrudRepository.findByCantidadStocklessThanAndEstado(cantidadStock, true);
+        return productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidadStock, true);
     }
 
+    public Optional<Producto> getProducto(int idProducto){
+        return productoCrudRepository.findById(idProducto);
+    }
+
+    public Producto save(Producto producto){
+        return productoCrudRepository.save(producto);
+    }
+
+    public void delete(int idProducto){
+        productoCrudRepository.deleteById(idProducto);
+    }
 }
