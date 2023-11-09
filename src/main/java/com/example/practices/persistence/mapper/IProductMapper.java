@@ -1,6 +1,6 @@
 package com.example.practices.persistence.mapper;
 
-import com.example.practices.domain.Product;
+import com.example.practices.domain.dto.ProductDto;
 import com.example.practices.persistence.entity.Producto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -22,9 +22,9 @@ public interface IProductMapper {
             @Mapping(source = "categoria", target = "category"),
 
     })
-    Product toProduct(Producto producto);
-    List<Product> toProducts(List<Producto> productos);
+    ProductDto toProduct(Producto producto);
+    List<ProductDto> toProducts(List<Producto> productos);
     @InheritInverseConfiguration
     @Mapping(target = "codigoBarras", ignore = true)
-    Producto toProducto(Product product);
+    Producto toProducto(ProductDto productDto);
 }

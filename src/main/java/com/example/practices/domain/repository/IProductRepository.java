@@ -1,21 +1,20 @@
 package com.example.practices.domain.repository;
 
-import com.example.practices.domain.Product;
-import com.example.practices.persistence.entity.Producto;
+import com.example.practices.domain.dto.ProductDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IProductRepository {
-    List<Product> getAll();
+    List<ProductDto> getAll();
 
-    Optional<List<Product> >getByCategoria(int idCategoria);
+    Optional<List<ProductDto> >getByCategoria(int idCategoria);
 
-    Optional<List<Product>> getEscasos(int cantidadStock);
+    Optional<List<ProductDto>> getEscasos(int cantidadStock);
 
-    Optional<Product> getProducto(int idProducto);
+    Optional<ProductDto> getProducto(int idProducto);
 
-    Product save(Product producto);
+    ProductDto save(ProductDto producto);
 
     void delete(int productId);
 }

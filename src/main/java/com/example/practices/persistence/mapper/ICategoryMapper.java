@@ -1,6 +1,6 @@
 package com.example.practices.persistence.mapper;
 
-import com.example.practices.domain.Category;
+import com.example.practices.domain.dto.CategoryDto;
 import com.example.practices.persistence.entity.Categoria;
 import org.mapstruct.*;
 
@@ -11,9 +11,9 @@ public interface ICategoryMapper {
             @Mapping(source="descripcion", target="category"),
             @Mapping(source="estado", target="active"),
     })
-    Category toCategory(Categoria categoria);
+    CategoryDto toCategory(Categoria categoria);
     @InheritInverseConfiguration
     @Mapping(target = "productos", ignore = true)
-    Categoria toCategoria(Category category);
+    Categoria toCategoria(CategoryDto categoryDto);
 
 }

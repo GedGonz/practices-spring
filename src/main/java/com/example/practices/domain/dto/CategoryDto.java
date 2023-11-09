@@ -1,6 +1,6 @@
-package com.example.practices.domain;
+package com.example.practices.domain.dto;
 
-public class Category {
+public class CategoryDto {
     private int categoryId;
     private String category;
     private boolean active;

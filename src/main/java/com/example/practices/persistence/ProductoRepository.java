@@ -1,6 +1,6 @@
 package com.example.practices.persistence;
 
-import com.example.practices.domain.Product;
+import com.example.practices.domain.dto.ProductDto;
 import com.example.practices.domain.repository.IProductRepository;
 import com.example.practices.persistence.crud.IProductoCrudRepository;
 import com.example.practices.persistence.entity.Producto;
@@ -17,27 +17,27 @@ public class ProductoRepository implements IProductRepository {
     private IProductoCrudRepository productoCrudRepository;
     @Autowired
     private IProductMapper productMapper;
-    public List<Product> getAll(){
+    public List<ProductDto> getAll(){
         List<Producto> productos=(List<Producto>) productoCrudRepository.findAll();
         return productMapper.toProducts(productos);
     }
 
-    public Optional<List<Product>> getByCategoria(int idCategoria){
+    public Optional<List<ProductDto>> getByCategoria(int idCategoria){
         List<Producto> productos=productoCrudRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
         return Optional.of(productMapper.toProducts(productos));
     }
-    public Optional<List<Product>> getEscasos(int cantidadStock){
+    public Optional<List<ProductDto>> getEscasos(int cantidadStock){
         Optional<List<Producto>> productos=productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidadStock, true);
         return productos.map(prods -> productMapper.toProducts(prods));
     }
 
-    public Optional<Product> getProducto(int idProducto){
+    public Optional<ProductDto> getProducto(int idProducto){
         Optional<Producto> producto = productoCrudRepository.findById(idProducto);
         return producto.map(prod-> productMapper.toProduct(prod));
     }
 
-    public Product save(Product product){
-        Producto producto = productMapper.toProducto(product);
+    public ProductDto save(ProductDto productDto){
+        Producto producto = productMapper.toProducto(productDto);
         return productMapper.toProduct(productoCrudRepository.save(producto));
     }
 

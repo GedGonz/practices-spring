@@ -1,13 +1,13 @@
-package com.example.practices.domain;
+package com.example.practices.domain.dto;
 
-public class Product {
+public class ProductDto {
     private int productId;
     private String name;
     private int categoryId;
     private double price;
     private int stock;
     private boolean active;
-    private Category category;
+    private CategoryDto categoryDto;
 
     public int getProductId() {
         return productId;
@@ -45,10 +45,10 @@ public class Product {
     public void setActive(boolean active) {
         this.active = active;
     }
-    public Category getCategory() {
-        return category;
+    public CategoryDto getCategory() {
+        return categoryDto;
     }
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 }
