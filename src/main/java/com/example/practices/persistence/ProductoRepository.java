@@ -5,6 +5,7 @@ import com.example.practices.domain.repository.IProductRepository;
 import com.example.practices.persistence.crud.IProductoCrudRepository;
 import com.example.practices.persistence.entity.Producto;
 import com.example.practices.persistence.mapper.IProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
 
 @Repository
 public class ProductoRepository implements IProductRepository {
+    @Autowired
     private IProductoCrudRepository productoCrudRepository;
+    @Autowired
     private IProductMapper productMapper;
     public List<Product> getAll(){
         List<Producto> productos=(List<Producto>) productoCrudRepository.findAll();
