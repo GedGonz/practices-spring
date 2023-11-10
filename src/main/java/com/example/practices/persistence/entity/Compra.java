@@ -24,7 +24,7 @@ public class Compra {
     @ManyToOne
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "compra", cascade = { CascadeType.ALL})
     private List<ComprasProducto> comprasProductos;
     public Integer getIdCompra() {
         return idCompra;
@@ -68,5 +68,19 @@ public class Compra {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public List<ComprasProducto> getComprasProductos() {
+        return comprasProductos;
+    }
+
+    public void setComprasProductos(List<ComprasProducto> comprasProductos) {
+        this.comprasProductos = comprasProductos;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
