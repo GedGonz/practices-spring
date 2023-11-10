@@ -2,6 +2,10 @@ package com.example.practices.web.controller;
 
 import com.example.practices.domain.dto.ProductDto;
 import com.example.practices.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +20,19 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     @GetMapping("")
+    @ApiOperation("Get all supermarket products")
+    @ApiResponse(code = 200, message = "Ok")
     public ResponseEntity<List<ProductDto>> getAll(){
 
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK) ;
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProduct(@PathVariable("id") int productId){
+    @ApiOperation("Search products with an ID")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Ok"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity<ProductDto> getProduct(@ApiParam(value = "the id of the product", required = true, example = "7") @PathVariable("id") int productId){
         return  productService.getProduct(productId).
                 map(resp -> new ResponseEntity<>(resp, HttpStatus.OK)).
                 orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
